@@ -1,8 +1,427 @@
-<html>
-  <head>
-    <title>About</title>
-  </head>
-  <body>
-    <h1>Welcome to the other side</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualising 52!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+  html { zoom: 1.1; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+  body {
+    min-height: 100vh;
+    background: #0a0a0f;
+    color: #e8e6e1;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .header { padding: 40px 24px 0; text-align: center; }
+  .header-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: #6b6b7b; margin-bottom: 12px; font-family: 'DM Mono', monospace;
+  }
+  .header h1 {
+    font-size: clamp(48px, 10vw, 80px); font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, #e0d5c5 0%, #c9a96e 50%, #e0d5c5 100%);
+    background-size: 200% 100%;
+    animation: shimmer 8s ease infinite;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1;
+  }
+  .header-sub {
+    font-size: 14px; color: #6b6b7b; margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .tabs {
+    display: flex; justify-content: center; gap: 8px;
+    padding: 32px 16px 0; flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 8px 18px; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.08); background: transparent;
+    color: #6b6b7b; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s ease;
+  }
+  .tab-btn.active {
+    border-color: #c9a96e; background: rgba(201,169,110,0.12); color: #c9a96e;
+  }
+
+  .content {
+    padding: 32px 24px 48px; max-width: 720px; margin: 0 auto;
+  }
+  .tab-panel { display: none; animation: fadeUp 0.5s ease both; }
+  .tab-panel.active { display: block; }
+
+  /* Tab 0: The Number */
+  .number-box {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 32px 24px; margin-bottom: 24px;
+  }
+  .number-label {
+    font-size: 11px; color: #6b6b7b; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 16px; font-family: 'DM Mono', monospace;
+  }
+  .number-digits {
+    font-family: 'DM Mono', monospace; font-size: clamp(14px, 3vw, 18px);
+    line-height: 1.8; word-break: break-all; letter-spacing: 1px;
+  }
+  .number-digits .digit { transition: opacity 0.15s ease; }
+
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-card {
+    border-radius: 12px; padding: 20px 16px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .stat-card.gold {
+    background: rgba(201,169,110,0.06); border: 1px solid rgba(201,169,110,0.15);
+  }
+  .stat-card.dark {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat-value {
+    font-size: 28px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+  }
+  .stat-label { font-size: 12px; color: #6b6b7b; margin-top: auto; }
+
+  .fun-fact {
+    margin-top: 24px; padding: 20px; background: rgba(255,255,255,0.02);
+    border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px; line-height: 1.7; color: #9a9aaa;
+  }
+  .fun-fact .gold { color: #c9a96e; font-weight: 700; }
+
+  /* Tab 1: Scale */
+  .scale-label {
+    font-size: 11px; color: #6b6b7b; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 20px; font-family: 'DM Mono', monospace;
+  }
+  .comparison { margin-bottom: 14px; }
+  .comparison-header {
+    display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;
+  }
+  .comparison-name { color: #9a9aaa; }
+  .comparison-name.highlight { color: #c9a96e; font-weight: 700; }
+  .comparison-value { font-family: 'DM Mono', monospace; font-size: 12px; color: #6b6b7b; }
+  .comparison-value.highlight { color: #c9a96e; font-weight: 500; }
+  .bar-track {
+    height: 6px; border-radius: 3px; background: rgba(255,255,255,0.04); overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 3px; background: rgba(255,255,255,0.12);
+    transition: width 1s ease; width: 0;
+  }
+  .bar-fill.highlight { background: linear-gradient(90deg, #c9a96e, #e8c068); }
+  .scale-note {
+    margin-top: 24px; font-size: 12px; color: #555;
+    font-family: 'DM Mono', monospace; text-align: center;
+  }
+
+  /* Tab 2: Analogies */
+  .analogy-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 24px 20px; margin-bottom: 16px;
+  }
+  .analogy-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .analogy-icon { font-size: 24px; }
+  .analogy-title { font-size: 15px; font-weight: 700; color: #e8e6e1; }
+  .analogy-desc {
+    font-size: 13px; line-height: 1.75; color: #8a8a9a; overflow-wrap: break-word;
+  }
+
+  /* Tab 3: Shuffle */
+  .shuffle-controls { text-align: center; margin-top: 28px; }
+  .shuffle-btn {
+    padding: 12px 32px; min-width: 200px; border-radius: 100px; border: none;
+    background: linear-gradient(135deg, #c9a96e, #e8c068); color: #0a0a0f;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s ease;
+  }
+  .shuffle-btn.loading {
+    background: rgba(201,169,110,0.6); cursor: wait;
+  }
+  .shuffle-info {
+    margin-top: 12px; font-size: 12px; color: #6b6b7b; font-family: 'DM Mono', monospace;
+  }
+  .deck-grid {
+    display: flex; flex-wrap: wrap; gap: 4px; justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+  .mini-card {
+    width: 38px; height: 52px; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.08); background: #faf9f6;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; font-family: 'DM Mono', monospace;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    animation: cardIn 0.3s ease both; flex-shrink: 0;
+  }
+  .mini-card .rank { font-size: 11px; line-height: 1; }
+  .mini-card .suit { font-size: 12px; line-height: 1; margin-top: 1px; }
+
+  .odds-box {
+    margin-top: 28px; padding: 20px;
+    background: rgba(201,169,110,0.05); border-radius: 12px;
+    border: 1px solid rgba(201,169,110,0.1);
+    font-size: 13px; line-height: 1.7; color: #8a8a9a; text-align: center;
+  }
+  .odds-box .gold {
+    color: #c9a96e; font-weight: 700; word-break: break-all; overflow-wrap: break-word;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Visualising</div>
+  <h1>52!</h1>
+  <div class="header-sub">the number of ways to arrange a deck of cards</div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="content">
+  <!-- Tab 0: The Number -->
+  <div class="tab-panel" id="panel-0">
+    <div class="number-box">
+      <div class="number-label">The full number, 68 digits</div>
+      <div class="number-digits" id="digits-container"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card gold">
+        <div class="stat-value" style="color:#c9a96e">8.07 × 10⁶⁷</div>
+        <div class="stat-label">Scientific notation</div>
+      </div>
+      <div class="stat-card dark">
+        <div class="stat-value">68</div>
+        <div class="stat-label">Digits long</div>
+      </div>
+    </div>
+    <div class="fun-fact">
+      Every time you shuffle a deck of cards thoroughly, you almost certainly create an arrangement that has
+      <span class="gold">never existed before</span> in the history of the universe, and never will again.
+    </div>
+  </div>
+
+  <!-- Tab 1: Scale -->
+  <div class="tab-panel" id="panel-1">
+    <div class="scale-label">Logarithmic scale comparison</div>
+    <div id="scale-bars"></div>
+    <div class="scale-note">⚠ Even on a log scale, the smaller numbers are barely visible</div>
+  </div>
+
+  <!-- Tab 2: Analogies -->
+  <div class="tab-panel" id="panel-2" style="animation:fadeUp 0.5s ease both"></div>
+
+  <!-- Tab 3: Shuffle -->
+  <div class="tab-panel" id="panel-3">
+    <div class="deck-grid" id="deck-grid"></div>
+    <div class="shuffle-controls">
+      <button class="shuffle-btn" id="shuffle-btn" onclick="handleShuffle()">🃏 Shuffle the deck</button>
+      <div class="shuffle-info">Shuffles: <span id="shuffle-count">0</span>. Each one almost certainly unique in all of history</div>
+    </div>
+    <div class="odds-box">
+      The arrangement above has a
+      <span class="gold">1 in 80,658,175,170,943,878,571,660,636,856,403,766,975,289,505,440,883,277,824,000,000,000,000</span>
+      chance of ever appearing again.
+    </div>
+  </div>
+</div>
+
+<script>
+const FIFTY_TWO_FACTORIAL = "80658175170943878571660636856403766975289505440883277824000000000000";
+const DIGITS = FIFTY_TWO_FACTORIAL.split("");
+
+const tabNames = ["The Number", "Scale", "Analogies", "Shuffle"];
+let activeTab = 0;
+let shuffleCount = 0;
+let isShuffling = false;
+
+const comparisons = [
+  { label: "Seconds in a year", value: "3.15 × 10⁷", bar: 0.06 },
+  { label: "Age of universe (seconds)", value: "4.3 × 10¹⁷", bar: 0.14 },
+  { label: "Grains of sand on Earth", value: "7.5 × 10¹⁸", bar: 0.16 },
+  { label: "Water drops in the ocean", value: "2.67 × 10²⁵", bar: 0.21 },
+  { label: "Atoms on Earth", value: "1.33 × 10⁵⁰", bar: 0.42 },
+  { label: "52!", value: "8.06 × 10⁶⁷", bar: 0.56 },
+  { label: "Atoms in the observable universe", value: "~10⁸⁰", bar: 0.67 },
+  { label: "Possible chess games", value: "~10¹²⁰", bar: 1 },
+];
+
+const analogies = [
+  { title: "Every second, pick a new spot on Earth", icon: "🌍", description: "Stand on the equator. Every second, take one step. After you've walked around the entire Earth, remove one drop from the Pacific Ocean. Repeat until the ocean is empty. Then, lay down one sheet of paper. Refill the ocean. Walk around the Earth again. When the stack of paper reaches the Sun, you're not even close to 52!" },
+  { title: "More than atoms on Earth", icon: "⚛️", description: "Earth contains roughly 10⁵⁰ atoms. 52! is 8 × 10⁶⁷. That means the number of ways to shuffle a deck is about 100 million trillion times more than every atom on our planet. You'd run out of atoms long before you ran out of shuffles." },
+  { title: "Time since the Big Bang", icon: "💥", description: "The universe is ~4.3 × 10¹⁷ seconds old. If you shuffled a deck once per second since the Big Bang, you'd have made about 4.3 × 10¹⁷ shuffles. That's 0.000000000000000000000000000000000000000000000000005% of all possible arrangements." },
+  { title: "Grains of sand on every star", icon: "⭐", description: "Earth has roughly 7.5 × 10¹⁸ grains of sand. The observable universe has about 10²⁴ stars. Even if every star had an Earth-like planet covered in sand, the total grains would be ~7.5 × 10⁴², which is still a trillion trillion times smaller than 52!" },
+];
+
+const suits = ["♠", "♥", "♦", "♣"];
+const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const suitColors = { "♠": "#1a1a2e", "♣": "#1a1a2e", "♥": "#c0392b", "♦": "#c0392b" };
+
+function buildDeck() {
+  const deck = [];
+  for (const s of suits) for (const r of ranks) deck.push({ rank: r, suit: s });
+  return deck;
+}
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Build tabs
+const tabsEl = document.getElementById("tabs");
+tabNames.forEach((name, i) => {
+  const btn = document.createElement("button");
+  btn.className = "tab-btn" + (i === 0 ? " active" : "");
+  btn.textContent = name;
+  btn.onclick = () => switchTab(i);
+  tabsEl.appendChild(btn);
+});
+
+function switchTab(index) {
+  activeTab = index;
+  document.querySelectorAll(".tab-btn").forEach((btn, i) => {
+    btn.classList.toggle("active", i === index);
+  });
+  document.querySelectorAll(".tab-panel").forEach((panel, i) => {
+    panel.classList.toggle("active", i === index);
+    if (i === index) {
+      panel.style.animation = "none";
+      panel.offsetHeight; // reflow
+      panel.style.animation = "fadeUp 0.5s ease both";
+    }
+  });
+  if (index === 1) animateBars();
+}
+
+// Tab 0: Digit reveal
+const digitsContainer = document.getElementById("digits-container");
+DIGITS.forEach((d, i) => {
+  const span = document.createElement("span");
+  span.className = "digit";
+  span.textContent = d;
+  span.style.opacity = "0.1";
+  span.style.color = i < 2 ? "#c9a96e" : i < 20 ? "#e8e6e1" : "#8a8a9a";
+  digitsContainer.appendChild(span);
+});
+
+let digitReveal = 0;
+const digitTimer = setInterval(() => {
+  if (digitReveal >= DIGITS.length) { clearInterval(digitTimer); return; }
+  digitsContainer.children[digitReveal].style.opacity = "1";
+  digitReveal++;
+}, 30);
+
+// Tab 1: Scale bars
+const scaleBarsEl = document.getElementById("scale-bars");
+comparisons.forEach((c, i) => {
+  const isHighlight = c.label === "52!";
+  const div = document.createElement("div");
+  div.className = "comparison";
+  div.innerHTML = `
+    <div class="comparison-header">
+      <span class="comparison-name ${isHighlight ? 'highlight' : ''}">${c.label}</span>
+      <span class="comparison-value ${isHighlight ? 'highlight' : ''}">${c.value}</span>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill ${isHighlight ? 'highlight' : ''}" data-width="${c.bar * 100}"></div>
+    </div>
+  `;
+  scaleBarsEl.appendChild(div);
+});
+
+function animateBars() {
+  document.querySelectorAll(".bar-fill").forEach(bar => {
+    bar.style.width = "0";
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.width = bar.dataset.width + "%";
+      });
+    });
+  });
+}
+
+// Tab 2: Analogies
+const analogiesEl = document.getElementById("panel-2");
+analogies.forEach(a => {
+  const card = document.createElement("div");
+  card.className = "analogy-card";
+  card.innerHTML = `
+    <div class="analogy-header">
+      <span class="analogy-icon">${a.icon}</span>
+      <div class="analogy-title">${a.title}</div>
+    </div>
+    <div class="analogy-desc">${a.description}</div>
+  `;
+  analogiesEl.appendChild(card);
+});
+
+// Tab 3: Shuffle
+let currentDeck = buildDeck();
+renderDeck(currentDeck);
+
+function renderDeck(deck) {
+  const grid = document.getElementById("deck-grid");
+  grid.innerHTML = "";
+  deck.forEach((card, i) => {
+    const el = document.createElement("div");
+    el.className = "mini-card";
+    el.style.color = suitColors[card.suit];
+    el.style.animationDelay = `${i * 15}ms`;
+    el.innerHTML = `<span class="rank">${card.rank}</span><span class="suit">${card.suit}</span>`;
+    grid.appendChild(el);
+  });
+}
+
+function handleShuffle() {
+  if (isShuffling) return;
+  isShuffling = true;
+  const btn = document.getElementById("shuffle-btn");
+  const grid = document.getElementById("deck-grid");
+  btn.textContent = "Shuffling...";
+  btn.classList.add("loading");
+  grid.style.opacity = "0.3";
+
+  setTimeout(() => {
+    currentDeck = shuffleArray(buildDeck());
+    shuffleCount++;
+    renderDeck(currentDeck);
+    document.getElementById("shuffle-count").textContent = shuffleCount;
+    btn.textContent = "🃏 Shuffle the deck";
+    btn.classList.remove("loading");
+    grid.style.opacity = "1";
+    isShuffling = false;
+  }, 300);
+}
+
+// Init first tab
+switchTab(0);
+</script>
+</body>
 </html>
