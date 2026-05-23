@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coffee Explorer — A Considered Guide to Coffee</title>
+<meta name="description" content="An interactive guide to coffee — explore six varietals, twelve canonical preparations, six brewing machines, and compose your own cup." />
+<meta name="theme-color" content="#ffffff" />
+<meta property="og:title" content="Coffee Explorer — A Considered Guide to Coffee" />
+<meta property="og:description" content="An interactive guide to coffee — varietals, preparations, machines, and a recipe composer." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='none' stroke='%231a1410' stroke-width='2'/%3E%3Cpath d='M24 12 C26 16 23 20 25 24 C27 28 23 32 24 36' fill='none' stroke='%231a1410' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=7" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <defs>
+          <linearGradient id="bm-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#3a2a1c"/>
+            <stop offset="1" stop-color="#1a1410"/>
+          </linearGradient>
+        </defs>
+        <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.25"/>
+        <path d="M24 9 C32 9 38 16 38 24 C38 32 32 39 24 39 C16 39 10 32 10 24 C10 16 16 9 24 9 Z
+                 M24 12 C18 12 13 17 13 24 C13 31 18 36 24 36 C30 36 35 31 35 24 C35 17 30 12 24 12 Z"
+              fill="url(#bm-grad)" fill-rule="evenodd"/>
+        <path d="M24 12 C26 16 23 20 25 24 C27 28 23 32 24 36"
+              fill="none" stroke="#f4ede2" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Coffee Explorer</span>
+        <span class="brand-sub">A Considered Guide</span>
+      </div>
+    </div>
+
+    <nav class="primary-nav" role="tablist">
+      <button class="nav-link active" data-tab="beans" role="tab">Origins</button>
+      <button class="nav-link" data-tab="drinks" role="tab">Preparations</button>
+      <button class="nav-link" data-tab="machines" role="tab">Machines</button>
+      <button class="nav-link" data-tab="builder" role="tab">Compose</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ORIGINS -->
+    <section class="panel active" id="beans">
+      <div class="panel-intro">
+        <span class="eyebrow">Chapter I</span>
+        <h1 class="display">The Origins</h1>
+        <p class="lede">A study of six varietals — their terroir, body, and the quiet differences that distinguish a thoughtful cup from an ordinary one.</p>
+      </div>
+
+      <div class="bean-layout">
+        <aside class="bean-index">
+          <div class="bean-index-head">
+            <span class="index-label">Index</span>
+            <span class="index-count" id="beanCount"></span>
+          </div>
+          <div class="bean-list" id="beanGrid"></div>
+        </aside>
+        <div class="bean-detail-wrap">
+          <div class="bean-detail" id="beanDetail" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRINKS -->
+    <section class="panel" id="drinks">
+      <div class="panel-intro">
+        <span class="eyebrow">Chapter II</span>
+        <h1 class="display">The Preparations</h1>
+        <p class="lede">Twelve canonical preparations. Each is defined by its ratio of espresso, milk, and crema — a small geometry that produces remarkable variety.</p>
+      </div>
+
+      <div class="filter-bar" role="tablist">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="strong">Strong</button>
+        <button class="filter" data-filter="milky">Milk-based</button>
+        <button class="filter" data-filter="sweet">Sweet</button>
+        <button class="filter" data-filter="cold">Cold</button>
+      </div>
+
+      <div class="drinks-grid" id="drinksGrid"></div>
+    </section>
+
+    <!-- MACHINES -->
+    <section class="panel" id="machines">
+      <div class="panel-intro">
+        <span class="eyebrow">Chapter III</span>
+        <h1 class="display">The Machines</h1>
+        <p class="lede">Six instruments of brewing — each shaping coffee through pressure, immersion, gravity, or temperature. The vessel is as defining as the bean.</p>
+      </div>
+
+      <div class="bean-layout">
+        <aside class="bean-index">
+          <div class="bean-index-head">
+            <span class="index-label">Index</span>
+            <span class="index-count" id="machineCount"></span>
+          </div>
+          <div class="bean-list" id="machineGrid"></div>
+        </aside>
+        <div class="bean-detail-wrap">
+          <div class="bean-detail" id="machineDetail" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILDER -->
+    <section class="panel" id="builder">
+      <div class="panel-intro">
+        <span class="eyebrow">Chapter IV</span>
+        <h1 class="display">Compose</h1>
+        <p class="lede">Construct your preparation from the ground up. Adjust the base, milk, sweetener, and finish — observe how each choice shapes the final cup.</p>
+      </div>
+
+      <div class="builder">
+        <aside class="preview-pane">
+          <div class="cup-stage">
+            <svg class="realistic-cup" viewBox="0 0 260 280" aria-hidden="true">
+              <defs>
+                <clipPath id="cup-clip">
+                  <path d="M48 70 L192 70 L178 242 Q120 252 62 242 Z"/>
+                </clipPath>
+                <!-- clear glass body: barely-there tint with cool edges -->
+                <linearGradient id="cup-body" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#e6ecef" stop-opacity="0.55"/>
+                  <stop offset="0.08" stop-color="#ffffff" stop-opacity="0.18"/>
+                  <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.04"/>
+                  <stop offset="0.92" stop-color="#cdd6dc" stop-opacity="0.18"/>
+                  <stop offset="1" stop-color="#a8b3bb" stop-opacity="0.4"/>
+                </linearGradient>
+                <!-- glass shine: bright left specular, subtle right edge -->
+                <linearGradient id="cup-shine" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.3"/>
+                  <stop offset="0.05" stop-color="#ffffff" stop-opacity="0.55"/>
+                  <stop offset="0.14" stop-color="#ffffff" stop-opacity="0"/>
+                  <stop offset="0.82" stop-color="#ffffff" stop-opacity="0"/>
+                  <stop offset="0.94" stop-color="#ffffff" stop-opacity="0.25"/>
+                  <stop offset="1" stop-color="#ffffff" stop-opacity="0.4"/>
+                </linearGradient>
+                <!-- vertical tint (top brighter, base darker for glass density) -->
+                <linearGradient id="cup-vert" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.06"/>
+                  <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000000" stop-opacity="0.08"/>
+                </linearGradient>
+                <!-- rim of glass — thin clear ellipse, no dark cavity -->
+                <linearGradient id="rim-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+                  <stop offset="0.5" stop-color="#e6ecef" stop-opacity="0.25"/>
+                  <stop offset="1" stop-color="#ffffff" stop-opacity="0.4"/>
+                </linearGradient>
+                <linearGradient id="rim-edge" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.7"/>
+                  <stop offset="1" stop-color="#bcc5cc" stop-opacity="0.5"/>
+                </linearGradient>
+                <!-- saucer -->
+                <linearGradient id="saucer-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fbf8f1"/>
+                  <stop offset="0.55" stop-color="#e6dfce"/>
+                  <stop offset="1" stop-color="#a89878"/>
+                </linearGradient>
+                <radialGradient id="crema-radial" cx="0.4" cy="0.35" r="0.7">
+                  <stop offset="0" stop-color="#e8c89a"/>
+                  <stop offset="0.5" stop-color="#b78950"/>
+                  <stop offset="1" stop-color="#6a4520"/>
+                </radialGradient>
+                <linearGradient id="cup-inner-shadow" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#000000" stop-opacity="0.38"/>
+                  <stop offset="0.16" stop-color="#000000" stop-opacity="0"/>
+                  <stop offset="0.84" stop-color="#000000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+                </linearGradient>
+                <!-- cylindrical curvature shading for liquid: dark edges + soft center highlight -->
+                <linearGradient id="liquid-cylinder" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#000000" stop-opacity="0.62"/>
+                  <stop offset="0.08" stop-color="#000000" stop-opacity="0.28"/>
+                  <stop offset="0.22" stop-color="#000000" stop-opacity="0.08"/>
+                  <stop offset="0.34" stop-color="#ffffff" stop-opacity="0.1"/>
+                  <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.04"/>
+                  <stop offset="0.7" stop-color="#000000" stop-opacity="0.05"/>
+                  <stop offset="0.88" stop-color="#000000" stop-opacity="0.28"/>
+                  <stop offset="1" stop-color="#000000" stop-opacity="0.55"/>
+                </linearGradient>
+                <!-- vertical body shading on liquid (top slightly brighter, bottom darker) -->
+                <linearGradient id="liquid-vertical" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.06"/>
+                  <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000000" stop-opacity="0.28"/>
+                </linearGradient>
+                <!-- glass handle: clear with cool reflective edges -->
+                <linearGradient id="handle-grad" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#cdd6dc" stop-opacity="0.4"/>
+                  <stop offset="0.3" stop-color="#ffffff" stop-opacity="0.12"/>
+                  <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.06"/>
+                  <stop offset="0.85" stop-color="#cdd6dc" stop-opacity="0.3"/>
+                  <stop offset="1" stop-color="#8a96a0" stop-opacity="0.55"/>
+                </linearGradient>
+                <!-- whipped cream: bright top-left highlight to warm cream shadow -->
+                <radialGradient id="cream-grad" cx="0.3" cy="0.25" r="0.85">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset="0.35" stop-color="#fdf9ef"/>
+                  <stop offset="0.75" stop-color="#ecdfc1"/>
+                  <stop offset="1" stop-color="#b8a276"/>
+                </radialGradient>
+                <linearGradient id="cream-peak" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset="0.6" stop-color="#fbf3df"/>
+                  <stop offset="1" stop-color="#d4be8a"/>
+                </linearGradient>
+                <!-- microfoam surface: silky off-white with warm caramel rim -->
+                <radialGradient id="foam-grad" cx="0.32" cy="0.28" r="0.9">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset="0.45" stop-color="#fbf5e6"/>
+                  <stop offset="0.85" stop-color="#eedcb6"/>
+                  <stop offset="1" stop-color="#c19a64"/>
+                </radialGradient>
+                <radialGradient id="ground-shadow" cx="0.5" cy="0.5" r="0.5">
+                  <stop offset="0" stop-color="#1a1410" stop-opacity="0.35"/>
+                  <stop offset="0.5" stop-color="#1a1410" stop-opacity="0.1"/>
+                  <stop offset="1" stop-color="#1a1410" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="1.6"/>
+                </filter>
+              </defs>
+
+              <!-- ground shadow (soft, contact + cast) -->
+              <ellipse cx="120" cy="268" rx="108" ry="5.5" fill="url(#ground-shadow)" filter="url(#soft-blur)"/>
+              <ellipse cx="120" cy="266" rx="78" ry="2.6" fill="#1a1410" opacity="0.18"/>
+
+              <!-- saucer: simple white porcelain disc with subtle ring -->
+              <ellipse cx="120" cy="260" rx="108" ry="9" fill="#c5cbcf" opacity="0.55"/>
+              <ellipse cx="120" cy="258" rx="108" ry="8.5" fill="#fafbfc"/>
+              <!-- saucer top highlight (front lip) -->
+              <path d="M28 256 Q120 248 212 256" fill="none" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+              <!-- saucer concentric ring (decorative) -->
+              <ellipse cx="120" cy="253" rx="76" ry="3.6" fill="none" stroke="#c5cbcf" stroke-width="0.6" opacity="0.7"/>
+              <!-- saucer well -->
+              <ellipse cx="120" cy="252" rx="60" ry="3" fill="#eef0f2" opacity="0.6"/>
+
+              <!-- glass handle: outline ring with subtle reflective fill -->
+              <!-- drop shadow behind handle -->
+              <path d="M188 116 Q250 116 250 165 Q250 218 188 218 L188 204 Q226 204 226 165 Q226 126 188 126 Z"
+                    fill="#1a1410" opacity="0.1" filter="url(#soft-blur)"/>
+              <!-- glass body — barely visible fill, defined by edges -->
+              <path d="M186 114 Q246 114 246 165 Q246 216 186 216 L186 202 Q224 202 224 165 Q224 128 186 128 Z"
+                    fill="url(#handle-grad)" stroke="#8a96a0" stroke-width="0.5" opacity="0.85"/>
+              <!-- outer arc bright specular -->
+              <path d="M192 120 Q243 122 243 165 Q243 208 192 210"
+                    fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" opacity="0.85"/>
+              <!-- secondary outer thin highlight -->
+              <path d="M196 128 Q236 130 236 165 Q236 200 196 202"
+                    fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.55"/>
+              <!-- inner-arc thin glass edge -->
+              <path d="M188 198 Q222 198 222 165 Q222 132 188 132"
+                    fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+              <!-- inner shadow inside bore -->
+              <path d="M190 196 Q220 196 220 165 Q220 134 190 134"
+                    fill="none" stroke="#8a96a0" stroke-width="0.4" opacity="0.4"/>
+
+              <!-- contact shadow under cup base on saucer -->
+              <ellipse cx="120" cy="252" rx="58" ry="3" fill="#1a1410" opacity="0.18" filter="url(#soft-blur)"/>
+
+              <!-- glass body: outer silhouette with crisp outline + barely-there tint -->
+              <path d="M44 70 L196 70 L182 246 Q120 258 58 246 Z" fill="#a8b3bb" opacity="0.1"/>
+              <path d="M44 70 L196 70 L182 246 Q120 258 58 246 Z" fill="none" stroke="#6a7782" stroke-width="1.2" opacity="0.7"/>
+              <path d="M48 70 L192 70 L178 242 Q120 252 62 242 Z" fill="url(#cup-body)"/>
+              <!-- inner-wall line (shows glass thickness) -->
+              <path d="M48 73 L192 73 L178 242 Q120 251 62 242 Z" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.65"/>
+
+              <!-- liquid (clipped) -->
+              <g clip-path="url(#cup-clip)" id="liquidStack"></g>
+
+              <!-- glass shine + edge highlights (sits over liquid) -->
+              <path d="M48 70 L192 70 L178 242 Q120 252 62 242 Z" fill="url(#cup-shine)"/>
+              <path d="M48 70 L192 70 L178 242 Q120 252 62 242 Z" fill="url(#cup-vert)"/>
+
+              <!-- left specular sliver — bright vertical glass reflection -->
+              <path d="M58 82 Q53 156 70 238" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
+              <path d="M62 86 Q57 156 73 236" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.9"/>
+
+              <!-- right specular sliver -->
+              <path d="M183 88 Q188 156 173 234" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" opacity="0.45"/>
+              <path d="M180 90 Q184 156 171 232" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-linecap="round" opacity="0.75"/>
+
+              <!-- bottom inner curve (visible through clear glass — the inside floor) -->
+              <path d="M64 242 Q120 250 176 242" fill="none" stroke="#6a7782" stroke-width="0.7" opacity="0.4"/>
+
+              <!-- glass rim (thick — visible glass thickness as two stacked outlines) -->
+              <ellipse cx="120" cy="70" rx="76" ry="9.5" fill="none" stroke="#6a7782" stroke-width="1.2" opacity="0.7"/>
+              <ellipse cx="120" cy="71.6" rx="76" ry="9" fill="url(#rim-grad)"/>
+              <!-- inner rim edge (the opening) -->
+              <ellipse cx="120" cy="70.5" rx="68" ry="7" fill="none" stroke="#6a7782" stroke-width="0.7" opacity="0.6"/>
+              <ellipse cx="120" cy="69.6" rx="68" ry="7" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.85"/>
+              <!-- rim top sheen -->
+              <path d="M64 67 Q120 60 176 67" fill="none" stroke="#ffffff" stroke-width="1.3" opacity="0.9"/>
+              <!-- rim front-left highlight (catches light on the curved lip) -->
+              <path d="M54 71 Q90 78 120 78" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.75"/>
+
+              <!-- topping renders over rim so whipped cream / foam can spill above the cup -->
+              <g id="toppingLayer"></g>
+            </svg>
+          </div>
+
+          <div class="preview-meta">
+            <div class="cup-name" id="cupLabel">An Empty Vessel</div>
+            <div class="cup-tagline" id="cupTagline">Begin by choosing a base.</div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-head"><span>Caffeine</span><em id="caffeineVal">0</em></div>
+              <div class="track"><div id="caffeineBar"></div></div>
+            </div>
+            <div class="metric">
+              <div class="metric-head"><span>Sweetness</span><em id="sweetVal">0</em></div>
+              <div class="track"><div id="sweetBar"></div></div>
+            </div>
+            <div class="metric">
+              <div class="metric-head"><span>Creaminess</span><em id="creamVal">0</em></div>
+              <div class="track"><div id="creamBar"></div></div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="controls">
+          <div class="control-group">
+            <div class="control-head">
+              <span class="step">01</span>
+              <h3>Base</h3>
+              <p>The foundation — concentration and roast.</p>
+            </div>
+            <div class="option-group" data-group="base"></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-head">
+              <span class="step">02</span>
+              <h3>Milk</h3>
+              <p>Body and texture. Optional but defining.</p>
+            </div>
+            <div class="option-group" data-group="milk"></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-head">
+              <span class="step">03</span>
+              <h3>Sweetener</h3>
+              <p>A whisper or a statement.</p>
+            </div>
+            <div class="option-group" data-group="sweet"></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-head">
+              <span class="step">04</span>
+              <h3>Finish</h3>
+              <p>The element that completes the cup.</p>
+            </div>
+            <div class="option-group" data-group="topping"></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-head">
+              <span class="step">05</span>
+              <h3>Service</h3>
+              <p>Hot or over ice.</p>
+            </div>
+            <div class="option-group" data-group="temp"></div>
+          </div>
+
+          <div class="actions">
+            <button id="randomBtn" class="btn ghost">Randomise</button>
+            <button id="resetBtn" class="btn ghost">Reset</button>
+            <button id="saveBtn" class="btn primary">Compose Recipe</button>
+          </div>
+
+          <div class="recipe-card" id="recipeCard" hidden></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Coffee Explorer</span>
+      <span class="dot">·</span>
+      <span>A study in coffee, presented thoughtfully.</span>
+    </div>
+  </footer>
+
+  <script src="app.js?v=17"></script>
+</body>
+</html>
