@@ -3,6 +3,22 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  // Ensure relative paths resolve correctly regardless of how the host serves the
+  // index (with or without trailing slash). Must run before any <link>/<script> tags.
+  (function () {
+    var p = location.pathname;
+    if (!p.endsWith('/')) {
+      var last = p.split('/').pop();
+      if (/\.[a-z0-9]+$/i.test(last)) {
+        p = p.replace(/[^/]+$/, ''); // strip filename
+      } else {
+        p += '/';                    // treat as directory
+      }
+    }
+    document.write('<base href="' + p + '">');
+  })();
+</script>
 <title>Coffee Explorer — A Considered Guide to Coffee</title>
 <meta name="description" content="An interactive guide to coffee — explore six varietals, twelve canonical preparations, six brewing machines, and compose your own cup." />
 <meta name="theme-color" content="#ffffff" />
@@ -13,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=7" />
+<link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body>
   <header class="site-header">
@@ -396,6 +412,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=17"></script>
+  <script src="app.js?v=18"></script>
 </body>
 </html>
