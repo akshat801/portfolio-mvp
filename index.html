@@ -1,91 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akshat Srivastava - Senior Designer</title>
-  <meta name="description" content="Senior Product Designer in Bengaluru, India. Currently designing clean & intuitive user experiences at Meesho.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/fontsource/fonts/google-sans@latest/latin-400-normal.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/fontsource/fonts/google-sans@latest/latin-500-normal.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Akshat Srivastava — Senior product designer at Meesho. Bengaluru, India." />
+  <title>Akshat Srivastava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=46" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1319'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Google Sans,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    // Set theme before paint to avoid flash. Also sync the toggle's
+    // aria-pressed state once the button is in the DOM, so screen readers
+    // never announce the wrong toggle state on first load.
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("themeToggle");
+          if (!btn) return;
+          var isDark = theme === "dark";
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        });
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <main class="page">
 
-    <!-- About -->
-    <section class="section">
-      <img src="avatar.png" alt="Akshat Srivastava" class="avatar">
-      <h1 class="name">Akshat Srivastava</h1>
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
 
-      <div class="bio">
-        <p>
-          I'm a Senior Product Designer living in
-          <strong>Bengaluru, India,</strong>
-          currently designing clean &amp; intuitive user experiences at
-          <strong>Meesho.</strong>
-        </p>
-        <p>
-          I believe great design is about having
-          <strong>curiosity</strong>
-          to know 'why' of the problem and
-          <strong>obsession</strong>
-          to find solutions that are simple and scalable.
-        </p>
-      </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-      <div class="social-links">
-        <a href="https://drive.google.com/file/d/1GgkZcvVPLHWgM6YEoYgNDQWixV-UiXxy/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Resume" class="social-icon"><i class="ph-fill ph-read-cv-logo"></i></a>
-        <a href="https://www.linkedin.com/in/akshatsrivastava19/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon"><i class="ph-fill ph-linkedin-logo"></i></a>
-        <a href="https://x.com/akshat_io" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="social-icon"><i class="ph-fill ph-x-logo"></i></a>
-        <a href="https://github.com/akshat801" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon"><i class="ph-fill ph-github-logo"></i></a>
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <header class="nav">
+    <a href="#top" class="nav__name">Akshat Srivastava</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#side-projects">Vibes</a>
+      <a href="#writing">Writing</a>
+      <button
+        class="theme"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+      >
+        <svg class="theme__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <a id="top" tabindex="-1"></a>
+
+    <section class="intro">
+      <p class="intro__meta">
+        <span>Bengaluru, India, <span id="bengaluruTime">--:-- --</span></span>
+        <span class="dot-sep" aria-hidden="true">·</span>
+        <span>Open for collaborations</span>
+      </p>
+      <p class="intro__lede">
+        Hi, I'm a Senior Product Designer, currently leading user experience for branded deals at <a href="https://www.linkedin.com/company/meesho/" target="_blank" rel="noopener noreferrer" class="link">Meesho</a>. I believe that great design makes the right choice feel obvious.
+      </p>
+      <div class="intro__actions">
+        <a href="https://docs.google.com/document/d/1u0YXNyyD5eotPHVoku3gFBi-X0_GhYjXeJeSjZGt5lc/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="intro__cta"><span class="intro__cta-label">View my resume</span> <span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="#about" class="intro__cta"><span class="intro__cta-label">Connect with me</span></a>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="section">
-      <h2 class="section-title">My projects</h2>
+    <section id="work" class="block" aria-labelledby="work-label">
+      <h2 class="block__label" id="work-label">Live work</h2>
+      <ul class="work-grid">
+        <li class="work-card">
+          <a href="https://pitch.com/v/payment-page-revamp-f9f967/09c788db-c716-4002-9359-408df4abb722" target="_blank" rel="noopener noreferrer">
+            <span class="work-card__thumb thumb--write" aria-hidden="true"></span>
+            <span class="work-card__year">MEESHO</span>
+            <span class="work-card__title">Payment Page Revamp</span>
+            <span class="work-card__desc">Redesigned payment page to increase prepaid share on Meesho app by 2pp.</span>
+          </a>
+        </li>
+        <li class="work-card">
+          <a href="https://pitch.com/v/rnr-solicitation-cwvvx9" target="_blank" rel="noopener noreferrer">
+            <span class="work-card__thumb thumb--upsell" aria-hidden="true"></span>
+            <span class="work-card__year">FLIPKART</span>
+            <span class="work-card__title">Ratings &amp; Reviews Solicitation</span>
+            <span class="work-card__desc">Designed reviews solicitation flow to increase products with ratings &amp; reviews by 11pp.</span>
+          </a>
+        </li>
+        <li class="work-card">
+          <a href="https://razorpay.com/flashcheckout/manage/" target="_blank" rel="noopener noreferrer">
+            <span class="work-card__thumb thumb--atlas" aria-hidden="true"></span>
+            <span class="work-card__year">RAZORPAY</span>
+            <span class="work-card__title">Saved Cards Portal</span>
+            <span class="work-card__desc">Shipped Razorpay's Saved Cards Portal that enabled users to have transparency and control over saved cards.</span>
+          </a>
+        </li>
+        <li class="work-card">
+          <a href="https://pitch.com/public/ccf6fa17-75f6-43dc-ab3c-206bff43e280" target="_blank" rel="noopener noreferrer">
+            <span class="work-card__thumb thumb--autolayout" aria-hidden="true"></span>
+            <span class="work-card__year">EDITAGE</span>
+            <span class="work-card__title">Advance VAT Issuance</span>
+            <span class="work-card__desc">Designed Advance VAT Issuance flow to reduce the VAT issuance time by 88%.</span>
+          </a>
+        </li>
+      </ul>
+    </section>
 
-      <div class="project-group">
-        <h3 class="group-title">Live work</h3>
-        <ul class="project-list">
-          <li>
-            <a href="https://drive.google.com/file/d/14uHPgWSGKphgH3SgdcKztIUkrZYlQSFX/view?usp=sharing" target="_blank" rel="noopener noreferrer">Payment Page Revamp / Meesho</a>
-            <p class="project-desc">86% of ~7M daily transactions on Meesho were Cash on Delivery. That meant 10x higher RTO rates &amp; crores in lost revenue. I led the redesign of the payment page which resulted in 2pp uplift in prepaid share (compounding over time).</p>
-          </li>
-          <li>
-            <a href="https://docs.google.com/presentation/d/1KE4be9dhnWXtscb-YjlYEakCb4ZbchAKak___Gl8P88/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Ratings &amp; Reviews Solicitation / Flipkart</a>
-            <p class="project-desc">Users trust products that have good ratings &amp; reviews but only 17% listings on Shopsy had ratings. I designed Ratings &amp; Review Solicitation flow that led to 11pp increase in products with Ratings and 10x increase in products with Image Reviews.</p>
-          </li>
-          <li>
-            <a href="https://razorpay.com/flashcheckout/manage/" target="_blank" rel="noopener noreferrer">Saved Cards Portal / Razorpay</a>
-            <p class="project-desc">Razorpay saved user&rsquo;s card information but users had no platform to view and manage their cards. I shipped Razorpay&rsquo;s Saved Cards Portal, enabling users to have transparency and control over saved cards.</p>
-          </li>
-          <li>
-            <a href="https://pitch.com/public/ccf6fa17-75f6-43dc-ab3c-206bff43e280" target="_blank" rel="noopener noreferrer">Advance VAT Issuance / Cactus</a>
-            <p class="project-desc">Getting a VAT Invoice was a manual process that took ~17hrs. I designed Advance VAT Issuance flow (for China market) which reduced the VAT Issuance time by 88%.</p>
-          </li>
-          <li>
-            <a href="https://www.figma.com/design/nrtvscrSpGHfAmhHL8hJhi/Editage-Design-System?node-id=0-1&t=0Bx0W1O75QVaL1zt-1" target="_blank" rel="noopener noreferrer">Editage Design System / Cactus</a>
-            <p class="project-desc">Multiple designers were working on same product but a common design language was missing. I collaborated with multiple stakeholders to create and document Editage Design System.</p>
-          </li>
-        </ul>
-      </div>
+    <section id="side-projects" class="block" aria-labelledby="side-projects-label">
+      <h2 class="block__label" id="side-projects-label">Vibe coded</h2>
+      <ol class="list list--writing">
+        <li class="list__item">
+          <a href="https://www.akshat-srivastava.com/date-picker" target="_blank" rel="noopener noreferrer">
+            <span class="list__year">Apr 2026</span>
+            <span class="list__main">
+              <span class="list__title">A case study on Date Picker<span class="article-tip article-tip--wrap" aria-hidden="true">A deep dive into one of the web's most-used input components</span></span>
+            </span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="https://www.akshat-srivastava.com/coffee-explorer" target="_blank" rel="noopener noreferrer">
+            <span class="list__year">Mar 2026</span>
+            <span class="list__main">
+              <span class="list__title">Coffee Explorer<span class="article-tip article-tip--wrap" aria-hidden="true">A complete guide on everything you need to know about coffee</span></span>
+            </span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="https://www.akshat-srivastava.com/52-factorial" target="_blank" rel="noopener noreferrer">
+            <span class="list__year">Feb 2026</span>
+            <span class="list__main">
+              <span class="list__title">Visualising 52 Factorial<span class="article-tip article-tip--wrap" aria-hidden="true">Visualise the number of ways to arrange a deck of cards</span></span>
+            </span>
+          </a>
+        </li>
+      </ol>
+    </section>
 
-      <div class="project-group">
-        <h3 class="group-title">Vibe coded</h3>
-        <ul class="project-list">
-          <li><a href="https://akshat-srivastava.com/52-factorial" target="_blank" rel="noopener noreferrer">Visualising 52 Factorial</a></li>
-          <li><a href="https://coffee-explorer-sage.vercel.app/" target="_blank" rel="noopener noreferrer">Coffee Explorer</a></li>
-          <li><a href="https://experimentations-3hbxb6ly6-sudonull-1s-projects.vercel.app/" target="_blank" rel="noopener noreferrer">Random Shapes Generator</a></li>
-        </ul>
-      </div>
+    <section id="writing" class="block" aria-labelledby="writing-label">
+      <h2 class="block__label" id="writing-label">My writing</h2>
+      <ol class="list list--writing">
+        <li class="list__item">
+          <a href="https://medium.com/@akshat.srivastava/design-notes-for-juniors-cc4707d2b16c" target="_blank" rel="noopener noreferrer">
+            <span class="list__year">May 2026</span>
+            <span class="list__main">
+              <span class="list__title">Design notes for junior designers<span class="article-tip" aria-hidden="true"><img class="article-tip__logo" src="https://miro.medium.com/v2/resize:fill:64:64/1*sHhtYhaCe2Uc3IU0IgKwIQ.png" alt="">7 min read</span></span>
+            </span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="https://medium.com/design-bootcamp/case-study-designing-an-analytics-dashboard-for-a-dine-in-restaurant-manager-e67a4e728b5e" target="_blank" rel="noopener noreferrer">
+            <span class="list__year">Oct 2021</span>
+            <span class="list__main">
+              <span class="list__title">Designing an analytics dashboard for restaurants<span class="article-tip" aria-hidden="true"><img class="article-tip__logo" src="https://miro.medium.com/v2/resize:fill:64:64/1*sHhtYhaCe2Uc3IU0IgKwIQ.png" alt="">7 min read</span></span>
+            </span>
+          </a>
+        </li>
+        <li class="list__item">
+          <a href="https://medium.com/design-bootcamp/what-is-equity-centered-community-design-4a49cb55003f" target="_blank" rel="noopener noreferrer">
+            <span class="list__year">Aug 2021</span>
+            <span class="list__main">
+              <span class="list__title">What is equity-centred community design?<span class="article-tip" aria-hidden="true"><img class="article-tip__logo" src="https://miro.medium.com/v2/resize:fill:64:64/1*sHhtYhaCe2Uc3IU0IgKwIQ.png" alt="">5 min read</span></span>
+            </span>
+          </a>
+        </li>
+      </ol>
+      <a class="all-link intro__cta" href="https://medium.com/@akshat.srivastava" target="_blank" rel="noopener noreferrer"><span class="intro__cta-label">All writing</span> <span class="arrow" aria-hidden="true">↗</span></a>
+    </section>
+
+    <section id="about" class="block about" aria-labelledby="about-label">
+      <h2 class="block__label" id="about-label">Let's connect</h2>
+      <ul class="elsewhere">
+        <li><span>Email</span><a href="mailto:heyakshat01@gmail.com" class="copy-email">heyakshat01@gmail.com <svg class="copy-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="copy-tooltip" aria-hidden="true">Tap to copy email</span></a></li>
+        <li><span>LinkedIn</span><a href="https://linkedin.com/in/akshatsrivastava19/" target="_blank" rel="noopener noreferrer" class="smart-preview" data-headline="Senior Product Designer at Meesho" data-followers="2.1K" data-connections="500+">/in/akshatsrivastava19 <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><span>Twitter</span><a href="https://x.com/akshat_io" target="_blank" rel="noopener noreferrer" class="smart-preview">/akshat_io <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><span>GitHub</span><a href="https://github.com/akshat801" target="_blank" rel="noopener noreferrer" class="smart-preview" data-name="Akshat Srivastava" data-bio="Senior Product Designer trying to become a full-stack builder" data-commits="32" data-last-commit="2026-04-28T03:00:00Z">/akshat801 <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><span>Medium</span><a href="https://medium.com/@akshat.srivastava" target="_blank" rel="noopener noreferrer" class="smart-preview" data-followers="82" data-bio="I like to write about design, psychology and my personal observations">/@akshat.srivastava <span class="arrow" aria-hidden="true">↗</span></a></li>
+      </ul>
     </section>
 
   </main>
+
+  <footer class="footer">
+    <span>© Akshat Srivastava</span>
+    <span id="last-updated"></span>
+  </footer>
+
+  <script src="script.js?v=51"></script>
 </body>
 </html>
