@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Help Me Write — a case study by Akshat Srivastava on redesigning generative writing inside Gmail and Docs." />
+  <title>Help Me Write — Akshat Srivastava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=46" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1319'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Google Sans,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("themeToggle");
+          if (!btn) return;
+          var isDark = theme === "dark";
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        });
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <header class="nav">
+    <a href="index.html" class="nav__name">Akshat Srivastava</a>
+    <nav class="nav__links" aria-label="Primary">
+      <button
+        class="theme"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+      >
+        <svg class="theme__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="cs">
+
+    <!-- ── Project header ───────────────────────────────────────────── -->
+    <header class="cs-header">
+      <p class="cs-eyebrow">Case study · 2024 — 25</p>
+      <h1 class="cs-title">Help Me Write</h1>
+      <p class="cs-deck">
+        Generative writing, rebuilt around trust. From concept to 2B&nbsp;users across 11 locales in eighteen months.
+      </p>
+
+      <dl class="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Lead designer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>8 designers · 40+ engineers</dd>
+        </div>
+        <div>
+          <dt>Timeline</dt>
+          <dd>18 months · 2024–25</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Google · Workspace AI</dd>
+        </div>
+      </dl>
+
+      <nav class="cs-toc" aria-label="On this page">
+        <span class="cs-toc__label">Read · 8 min</span>
+        <ol class="cs-toc__list">
+          <li><a href="#context">Context</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#strategy">Strategy</a></li>
+          <li><a href="#design">Design</a></li>
+          <li><a href="#outcome">Outcome</a></li>
+          <li><a href="#reflection">Reflection</a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <!-- ── Hero visual ─────────────────────────────────────────────── -->
+    <figure class="cs-hero" aria-hidden="true">
+      <div class="cs-hero__visual thumb--write"></div>
+    </figure>
+
+    <!-- ── TL;DR ───────────────────────────────────────────────────── -->
+    <section class="cs-tldr" aria-labelledby="tldr-label">
+      <h2 class="cs-tldr__label" id="tldr-label">TL;DR</h2>
+      <p>
+        We redesigned how billions of people get help writing inside Gmail and Docs.
+        The new assist is <strong>quiet by default, rich when asked</strong> — invoked on a single
+        shortcut, streamed as ghost text, reversible with one keystroke. Twelve weeks
+        after launch, suggestion completion was up 2.4×, weekly users up 38%, and
+        assist-related support tickets down 62%.
+      </p>
+    </section>
+
+    <!-- ── Context ─────────────────────────────────────────────────── -->
+    <section class="cs-section" id="context" aria-labelledby="context-label">
+      <h2 class="cs-section__label" id="context-label">01 · Context</h2>
+      <div class="cs-prose">
+        <p>
+          By early 2024, users expected generative AI to help with everyday writing —
+          but Gmail and Docs' existing assist still read like ambitious autocomplete.
+          The problem wasn't capability. It was trust, predictability, and a UI that
+          didn't know when to step aside.
+        </p>
+        <p>
+          We were asked to rebuild the assist surface so that generative help felt
+          like a collaborator you could ignore, not an autocomplete you had to fight.
+        </p>
+        <ul class="cs-list">
+          <li><strong>Scale.</strong> 2B monthly Workspace users. Small UI changes have outsized downstream effects.</li>
+          <li><strong>Stakes.</strong> Email is high-consequence writing. Wrong tone, broken undo, or lost intent damages trust fast.</li>
+          <li><strong>Constraint.</strong> Ship to 11 locales in year one, on the existing Workspace assist infrastructure.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Research ────────────────────────────────────────────────── -->
+    <section class="cs-section" id="research" aria-labelledby="research-label">
+      <h2 class="cs-section__label" id="research-label">02 · Research</h2>
+      <div class="cs-prose">
+        <p>
+          Over six weeks we ran diary studies with 24 participants across four
+          markets, interviewed 12 writing‑heavy professionals, and reviewed 2,300
+          support tickets from the existing assist product.
+        </p>
+        <p>Three patterns emerged:</p>
+        <ul class="cs-list">
+          <li><strong>Suggestion fatigue.</strong> Power users disabled assist within 10 days — the UI was too loud for drafting flow.</li>
+          <li><strong>Tone mismatch.</strong> The model defaulted to formal language, which felt wrong for casual replies (78% of use).</li>
+          <li><strong>Undo confusion.</strong> Users couldn't reliably return to their original text after accepting a suggestion.</li>
+        </ul>
+      </div>
+      <figure class="cs-figure">
+        <div class="cs-figure__visual thumb--atlas"></div>
+        <figcaption>
+          Affinity map from 12 interviews — patterns of ignoring, modifying, and accepting clustered by writing‑task type.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ── Strategy ────────────────────────────────────────────────── -->
+    <section class="cs-section" id="strategy" aria-labelledby="strategy-label">
+      <h2 class="cs-section__label" id="strategy-label">03 · Strategy</h2>
+      <div class="cs-prose">
+        <p>
+          We framed the design around a single principle — <em>quiet by default,
+          rich when asked</em>. Assist would appear only on deliberate invocation,
+          and once invoked, would expose enough control (tone, length, style) that
+          the writer always stayed in charge.
+        </p>
+        <blockquote class="cs-quote">
+          <p>A good assistant is the one you notice the moment you need it, and forget about when you don't.</p>
+          <footer>Design principle · framed week four</footer>
+        </blockquote>
+        <p>
+          That principle became a veto on individual decisions. Any suggestion that
+          required the user to dismiss, disable, or undo something got reconsidered
+          before shipping.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Design ──────────────────────────────────────────────────── -->
+    <section class="cs-section" id="design" aria-labelledby="design-label">
+      <h2 class="cs-section__label" id="design-label">04 · Design</h2>
+      <div class="cs-prose">
+        <p>
+          Across four sprints we explored five invocation patterns (keyboard
+          shortcut, selection menu, sidebar, inline toolbar, command palette) and
+          three response modes (streaming preview, full replacement, side‑by‑side
+          diff).
+        </p>
+      </div>
+
+      <figure class="cs-figure cs-figure--wide">
+        <div class="cs-figure__visual thumb--autolayout"></div>
+        <figcaption>
+          Exploration board — 40+ directions narrowed to three finalists after two rounds of internal dogfooding.
+        </figcaption>
+      </figure>
+
+      <div class="cs-prose">
+        <p>
+          The shipped solution invokes via <kbd>⌘&nbsp;K</kbd> or a toolbar button.
+          Suggestions stream as ghost text the writer can accept with <kbd>Tab</kbd>,
+          modify with <kbd>⌘&nbsp;E</kbd>, or dismiss with <kbd>Esc</kbd>. Tone and
+          length controls sit quietly below the preview, reached only when wanted.
+        </p>
+        <p>
+          We added a diff‑aware undo so users can always roll back to their
+          pre‑assist text — one of the highest‑confidence calls we made all year.
+        </p>
+      </div>
+
+      <figure class="cs-figure">
+        <div class="cs-figure__visual thumb--frames"></div>
+        <figcaption>
+          Final invocation flow — trigger, stream, acceptance, undo.
+        </figcaption>
+      </figure>
+
+      <div class="cs-prose">
+        <p>
+          A six‑week gated rollout with 2% of U.S. users surfaced two copy issues
+          and one undo edge case, which we iterated before widening to 11 locales
+          over the following twelve weeks.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Outcome / metrics ───────────────────────────────────────── -->
+    <section class="cs-section" id="outcome" aria-labelledby="outcome-label">
+      <h2 class="cs-section__label" id="outcome-label">05 · Outcome</h2>
+      <ul class="cs-metrics" aria-label="Post-launch metrics, 12 weeks">
+        <li>
+          <span class="cs-metrics__value">2.4×</span>
+          <span class="cs-metrics__label">Suggestion completion rate vs baseline</span>
+        </li>
+        <li>
+          <span class="cs-metrics__value">+38%</span>
+          <span class="cs-metrics__label">Weekly active assist users</span>
+        </li>
+        <li>
+          <span class="cs-metrics__value">−62%</span>
+          <span class="cs-metrics__label">Assist‑related support tickets</span>
+        </li>
+        <li>
+          <span class="cs-metrics__value">11</span>
+          <span class="cs-metrics__label">Locales shipped in year one</span>
+        </li>
+      </ul>
+      <p class="cs-metrics__note">Twelve weeks post‑launch · measured across Gmail and Docs.</p>
+    </section>
+
+    <!-- ── Reflection ──────────────────────────────────────────────── -->
+    <section class="cs-section" id="reflection" aria-labelledby="reflection-label">
+      <h2 class="cs-section__label" id="reflection-label">06 · Reflection</h2>
+      <div class="cs-prose">
+        <p>
+          The thing I'd change: we spent weeks polishing the streaming animation
+          that could have been cut for launch and added in an iteration. It shipped
+          beautifully, but the same quality bar applied to undo from day one might
+          have caught the two post‑launch bugs.
+        </p>
+        <p>
+          The best call was holding the <em>quiet by default</em> principle as a
+          veto. It kept the team aligned when the space got crowded with options,
+          and the cost of saying no was always lower than it felt in the moment.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Next ────────────────────────────────────────────────────── -->
+    <nav class="cs-next" aria-label="More projects">
+      <a href="index.html#work" class="cs-next__link">
+        <span class="cs-next__label">See more work</span>
+        <span class="cs-next__arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Akshat Srivastava</span>
+    <span>Last updated April 2026</span>
+  </footer>
+
+  <script src="script.js?v=51"></script>
+</body>
+</html>
