@@ -49,6 +49,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 24px;           /* anchors land with breathing room */
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;                   /* defend against accidental horizontal overflow */
 }
 html, body {
   margin: 0;
@@ -447,6 +448,13 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .article-tip { transition: opacity .18s var(--ease); }
 }
+/* Hover tooltips push layout past the viewport on narrow screens and are
+   useless on touch (no hover). Drop them entirely in both cases. Using
+   max-width (not just hover: none) because some browsers/emulators don't
+   honour the hover media query reliably. */
+@media (hover: none), (max-width: 900px) {
+  .article-tip { display: none; }
+}
 .list__title {
   font-size: 17px;
   font-weight: 500;
@@ -794,6 +802,12 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .copy-tooltip,
   .copy-email::before { transition: opacity .18s var(--ease); }
+}
+/* Same reasoning as .article-tip — hover tooltips are useless on touch and
+   push layout past the viewport. */
+@media (hover: none), (max-width: 900px) {
+  .copy-tooltip,
+  .copy-email::before { display: none; }
 }
 
 /* ── Smart preview card ──────────── */
