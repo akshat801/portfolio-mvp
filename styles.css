@@ -23,7 +23,7 @@
   --s-9: 48px;
   --s-section-y: clamp(56px, 7vw, 80px);
   --s-intro-top: clamp(80px, 10vw, 120px);
-  --s-intro-bottom: clamp(56px, 7vw, 72px);
+  --s-intro-bottom: clamp(56px, 7vw, 80px);
   --s-label-gap: 28px;
 
   --ease: cubic-bezier(.2,.7,.2,1);
