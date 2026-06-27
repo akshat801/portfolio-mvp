@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ratings & Reviews Solicitation, a project synopsis by Akshat Srivastava on a contextual review flow that lifted Shopsy's review coverage by 11pp." />
+  <title>Ratings &amp; Reviews Solicitation · Akshat Srivastava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=68" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1319'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Google Sans,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("themeToggle");
+          if (!btn) return;
+          var isDark = theme === "dark";
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        });
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <header class="nav">
+    <a href="../index.html" class="nav__name">Akshat Srivastava</a>
+    <nav class="nav__links" aria-label="Primary">
+      <button
+        class="theme"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+      >
+        <svg class="theme__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="cs">
+
+    <!-- ── Project header ───────────────────────────────────────────── -->
+    <header class="cs-header">
+      <p class="cs-eyebrow">Case study · SHOPSY (FLIPKART) · 2023</p>
+      <h1 class="cs-title">Ratings &amp; Reviews Solicitation</h1>
+      <p class="cs-deck">
+        A contextual solicitation flow that made leaving a review effortless,
+        lifting the share of products with ratings &amp; reviews by 11pp.
+      </p>
+
+      <dl class="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Product Designer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Me · 1 PM · 2 Engineers</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Shopsy App</dd>
+        </div>
+      </dl>
+    </header>
+
+    <!-- ── 01 · Context ────────────────────────────────────────────── -->
+    <section class="cs-section" id="context" aria-labelledby="context-label">
+      <h2 class="cs-section__label" id="context-label">Context</h2>
+      <div class="cs-prose">
+        <p>
+          On Shopsy, ratings &amp; reviews are the single biggest driver of purchase confidence.
+          Shoppers rarely buy a product with no reviews. Yet a large chunk of the catalogue, especially
+          new and long‑tail products, sat in a <strong>cold‑start state</strong> with no reviews at
+          all, suppressing their conversion and discoverability.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 02 · Problem ────────────────────────────────────────────── -->
+    <section class="cs-section" id="problem" aria-labelledby="problem-label">
+      <h2 class="cs-section__label" id="problem-label">Problem</h2>
+      <div class="cs-prose">
+        <p>
+          Users bought products on Shopsy but almost no one came back to review. The existing
+          touchpoint was on the Order Details Page which was missed by users. Other problems included:
+        </p>
+        <ul class="cs-list">
+          <li><strong>Bad timing.</strong> Review prompts popped-up when intent was lowest, far from the moment the product was actually in the customer's hands.</li>
+          <li><strong>Too much effort.</strong> Writing a full review from a blank box was heavy; most people bounced there.</li>
+          <li><strong>Cold‑start drag.</strong> Products with zero reviews converted worse and got less surface area, so they stayed reviewless.</li>
+        </ul>
+      </div>
+      <figure class="cs-figure" style="width: 1000px; max-width: calc(100vw - 2 * var(--gutter)); margin-left: 50%; transform: translateX(-50%);">
+        <img class="cs-figure__media" src="assets/rnr-problem.jpg?v=3" alt="A teardown of Flipkart's legacy review flow across four annotated screens: an Order Details page where the star rating doesn't look clickable and there's no obvious place to add photos, a Review Product screen with rectangular images, a rating that can't be changed and a small bottom-left Add Image CTA, a screen forcing users to manually type everything into an unrealistically long text box, and a Thank You screen that says 'you are awesome' even for a bad rating, with a not-thumb-friendly list of earlier purchases." />
+        <figcaption>Teardown of the legacy review flow: bad timing, a heavy free-text ask, hard-to-find photo upload, and tone-deaf confirmation copy.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── 03 · Challenges ─────────────────────────────────────────── -->
+    <section class="cs-section" id="challenges" aria-labelledby="challenges-label">
+      <h2 class="cs-section__label" id="challenges-label">Challenges</h2>
+      <div class="cs-prose">
+        <ul class="cs-list">
+          <li><strong>Helpful, not nagging.</strong> Ask too often and it becomes spam; ask too rarely and coverage stalls. I tuned frequency and timing rules with the team to stay on the right side of that line.</li>
+          <li><strong>Quality vs. volume.</strong> Lowering effort risks shallow reviews. Structured tags let us keep submissions fast while still capturing decisions‑useful signals.</li>
+          <li><strong>Fraud and trust.</strong> Easier input invites spam, so the flow had to work without adding friction for genuine buyers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 04 · Solution ───────────────────────────────────────────── -->
+    <section class="cs-section" id="solution" aria-labelledby="solution-label">
+      <h2 class="cs-section__label" id="solution-label">Solution</h2>
+      <div class="cs-prose">
+        <p>
+          I led the end‑to‑end solicitation flow, from the trigger logic to the input model. The
+          current prompt came at the wrong place/time and demanded too much. I explored multiple
+          approaches to make reviews seamless. Having a single‑step star tap and progressive
+          disclosure captured far more signal without scaring people off.
+        </p>
+        <ul class="cs-list">
+          <li><strong>Right moment, right place.</strong> Ratings modal surfaced just after delivery, when the product was fresh in hand. We explored multiple touchpoints like Homepage, Notifications, Order Details Page, etc.</li>
+          <li><strong>One tap to start.</strong> A star rating is a single tap; a written review and photos are optional add‑ons, never a mandate.</li>
+          <li><strong>Structured tags.</strong> Quick‑pick attribute tags (fit, quality, value) let people contribute useful signals in seconds, even with no words.</li>
+        </ul>
+      </div>
+      <figure class="cs-figure" style="width: 1000px; max-width: calc(100vw - 2 * var(--gutter)); margin-left: 50%; transform: translateX(-50%);">
+        <img class="cs-figure__media" src="assets/rnr-solution.jpg?v=2" alt="The Shopsy post-delivery rating flow across four screens: a 48x48 thumbnail prompt with a one-tap star rating and Remind me later, an expanded sheet with star-with-emoji rating, aspect pills (Fabric, Style, Comfort) and a large Add Photos CTA with social proof, the same sheet with photos added and tags selected, and a confirmation screen with copy based on the rating plus prompts to rate earlier purchases." />
+        <figcaption>The end‑to‑end solicitation flow: a lightweight one‑tap star prompt that progressively reveals optional tags, photos, and earlier purchases — never gating the first rating.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── 05 · Impact ─────────────────────────────────────────────── -->
+    <section class="cs-section" id="impact" aria-labelledby="impact-label">
+      <h2 class="cs-section__label" id="impact-label">Impact</h2>
+      <div class="cs-prose">
+        <p>
+          The contextual solicitation flow lifted the share of products with ratings &amp; reviews by
+          roughly 11pp and images reviews solicitation almost doubled. Newly‑reviewed products
+          converted better, and the long tail of "no reviews yet" listings reduced.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 06 · Reflection ─────────────────────────────────────────── -->
+    <section class="cs-section" id="reflection" aria-labelledby="reflection-label">
+      <h2 class="cs-section__label" id="reflection-label">Reflection</h2>
+      <div class="cs-prose">
+        <p>
+          What I'd do differently: I treated images as a secondary add‑on, but in retrospect image
+          reviews drove the most downstream conversion of all. If I ran it again I'd invest a little
+          more in nudging to add images in the same flow or remind users later.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Go deeper (full deck) ───────────────────────────────────── -->
+    <section class="cs-section" id="full-deck" aria-labelledby="full-deck-label">
+      <h2 class="cs-section__label" id="full-deck-label">Go deeper</h2>
+      <div class="cs-prose">
+        <p>
+          Want the full story? The deck walks through the whole process including research,
+          data analysis, design explorations and final UI.
+        </p>
+      </div>
+      <div class="cs-actions">
+        <a class="intro__cta" href="https://pitch.com/v/rnr-solicitation-cwvvx9" target="_blank" rel="noopener noreferrer">
+          <span class="intro__cta-label">View the full deck</span> <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="../index.html#work" class="cs-next__link">
+          <span class="cs-next__label">See more work</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Akshat Srivastava</span>
+    <span>Last updated April 2026</span>
+  </footer>
+
+  <script src="../script.js?v=51"></script>
+</body>
+</html>

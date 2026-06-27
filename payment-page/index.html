@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Payment Page Revamp, a project synopsis by Akshat Srivastava on redesigning Meesho's payment page to lift prepaid order share by 2pp." />
+  <title>Payment Page Revamp · Akshat Srivastava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=68" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1319'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Google Sans,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("themeToggle");
+          if (!btn) return;
+          var isDark = theme === "dark";
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        });
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <header class="nav">
+    <a href="../index.html" class="nav__name">Akshat Srivastava</a>
+    <nav class="nav__links" aria-label="Primary">
+      <button
+        class="theme"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+      >
+        <svg class="theme__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="cs">
+
+    <!-- ── Project header ───────────────────────────────────────────── -->
+    <header class="cs-header">
+      <p class="cs-eyebrow">Case study · MEESHO · 2025</p>
+      <h1 class="cs-title">Payment Page Revamp</h1>
+      <p class="cs-deck">
+        Redesigned Meesho's payment page to make prepaid an attractive and trusted choice,
+        lifting prepaid order share by 2pp across 250M+ monthly active users.
+      </p>
+
+      <dl class="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Product Designer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Me · 2 PMs · 2 Engineers</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Meesho App</dd>
+        </div>
+      </dl>
+    </header>
+
+    <!-- ── 01 · Context ────────────────────────────────────────────── -->
+    <section class="cs-section" id="context" aria-labelledby="context-label">
+      <h2 class="cs-section__label" id="context-label">Context</h2>
+      <div class="cs-prose">
+        <p>
+          Meesho is India's largest e‑commerce marketplace, with <strong>500M+</strong> android app downloads and <strong>250M+</strong>
+          monthly active users. It's built largely for price‑sensitive, less tech‑savvy shoppers in
+          Tier 2+ cities, buying mostly non‑branded products from sellers across India.
+        </p>
+        <p>
+          On a platform this size, how people pay isn't a checkout detail. <strong>It shapes the
+          unit economics of the entire business</strong>. Prepaid orders are cheaper to fulfil, less
+          likely to be returned, and better for sellers, buyers, and Meesho. I led the redesign
+          of the payment page to shift Cash on Delivery orders towards Prepaid.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 02 · Problem ────────────────────────────────────────────── -->
+    <section class="cs-section" id="problem" aria-labelledby="problem-label">
+      <h2 class="cs-section__label" id="problem-label">Problem</h2>
+      <div class="cs-prose">
+        <p>
+          <strong>86%</strong> of Meesho's transactions were Cash on Delivery. COD orders have a higher
+          Return‑to‑Origin (RTO) rate than prepaid, translating into crores in lost revenue and a bad
+          experience for buyers, sellers, and the platform.
+        </p>
+        <p>
+          User research surfaced five major problem themes: <strong>Awareness, Trust, Access,
+          Balance, and Capability</strong>. We decided to focus first on awareness as it was the
+          largest addressable volume and fastest to move with a design intervention, while
+          trust, access, and capability needed longer‑term behavioural change.
+        </p>
+      </div>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/payment-problem-teardown.jpg?v=3" alt="Teardown of the legacy Meesho payment page, annotated with six problem areas: a missed 'pay online' banner, low comprehension of Wallet and reseller touchpoints, unclear bank offers, and redundant price information." />
+        <figcaption>Teardown of the legacy payment page, where prepaid awareness and comprehension broke down.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── 03 · Challenges ─────────────────────────────────────────── -->
+    <section class="cs-section" id="challenges" aria-labelledby="challenges-label">
+      <h2 class="cs-section__label" id="challenges-label">Challenges</h2>
+      <div class="cs-prose">
+        <p>
+          The hard part wasn't adding a discount, it was communicating it without breaking
+          everything else on a cognitively overloaded page. Each design move came with a real
+          trade‑off I had to navigate:
+        </p>
+        <ul class="cs-list">
+          <li><strong>Making price prominent</strong> risked users fixating on the number and losing the association to payment method.</li>
+          <li><strong>Simplifying</strong> the drop‑off‑heavy page meant reducing options power users relied on.</li>
+          <li><strong>Reducing prominence</strong> of the Reselling section could increase friction for Resellers.</li>
+          <li><strong>Building a recall</strong> for online payment could potentially reduce visibility of Cash on Delivery.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 04 · Solution ───────────────────────────────────────────── -->
+    <section class="cs-section" id="solution" aria-labelledby="solution-label">
+      <h2 class="cs-section__label" id="solution-label">Solution</h2>
+      <div class="cs-prose">
+        <p>
+          I led the end‑to‑end designs for Payment Page. I started with User Research and Data
+          Analysis. Based on all the user insights and data, I created 3 design variants and conducted
+          usability testing. Then, I incorporated all the feedback and designed the final UI for
+          handoff. I decided to anchor users on <strong>price differentiation, simplify and personalise</strong> the
+          payment page based on user cohorts. I also designed for all the edge cases, so the
+          experience held up in the real world, not just the happy path.
+        </p>
+      </div>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/payment-solution.jpg?v=2" alt="The redesigned Meesho payment page, annotated: a compact stepper, price-led hierarchy with prepaid savings highlighted in green, bank-offer awareness, reduced prominence for reselling, collapsed price details, and a clear Place Order CTA." />
+        <figcaption>Default state: a price‑led hierarchy that surfaces prepaid savings and bank offers, with secondary actions dialled down.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/payment-solution-2.jpg?v=2" alt="The Pay Online state of the redesigned payment page, annotated: Pay Online selected by default, the last-used method (Google Pay) shown upfront, a bank-offers CTA, the total updated to the prepaid price, and the CTA changed to Pay Now." />
+        <figcaption>Pay Online selected: methods expand with the last‑used option upfront, the total updates to the prepaid price, and the CTA becomes "Pay Now."</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/payment-solution-3.jpg?v=1" alt="The add-a-new-card flow across three screens: expanding Debit/Credit Card to tap Add New Card, entering card number, expiry, and CVV in a secure sheet, then the saved card appearing as the selected method." />
+        <figcaption>Adding a new card: the Debit/Credit Card section expands to a secure entry sheet, and the verified card is saved and pre‑selected for checkout.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/payment-solution-4.jpg?v=1" alt="Three edge-case states of the redesigned payment page: no prepaid discount (both options priced equally), Cash on Delivery unavailable (prompting pay online), and a payment outage where an individual method like Google Pay is marked not available." />
+        <figcaption>Designing for edge cases: no prepaid discount, COD unavailable, and a payment outage — each state stays clear and keeps the user moving.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── 05 · Impact ─────────────────────────────────────────────── -->
+    <section class="cs-section" id="impact" aria-labelledby="impact-label">
+      <h2 class="cs-section__label" id="impact-label">Impact</h2>
+      <div class="cs-prose">
+        <p>
+          Rolled out initially to <strong>5M users</strong>, the redesign delivered a <strong>2pp uplift in Prepaid
+          Share</strong> in 4 weeks. Page Conversion and Net Revenue also increased, and Prepaid
+          Share compounded over time as discount depth, prepaid activation, and retention improved.
+          It's now scaled to all Meesho users on Android and iOS.
+        </p>
+      </div>
+      <p class="cs-metrics__note">Not sharing detailed impact numbers here for confidentiality reasons.</p>
+    </section>
+
+    <!-- ── 06 · Reflection ─────────────────────────────────────────── -->
+    <section class="cs-section" id="reflection" aria-labelledby="reflection-label">
+      <h2 class="cs-section__label" id="reflection-label">Reflection</h2>
+      <div class="cs-prose">
+        <p>
+          The biggest lesson was the <strong>power of prioritising</strong> the right problem first. Awareness wasn't
+          the deepest barrier, but it was the largest and easily movable. Betting on it meant a small
+          design change could compound into a shift in payment behaviour, which is exactly
+          what happened.
+        </p>
+        <p>
+          Next steps on this project would be user personalisation: a data‑science model that
+          recommends a payment method using recency, frequency, success rate, and RTO profile. Also
+          moving the discount callouts earlier in the funnel (PLP/PDP and off‑app nudges), and finally
+          tackling the harder, slower barriers of trust, access, and capability.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Go deeper (full deck) ───────────────────────────────────── -->
+    <section class="cs-section" id="full-deck" aria-labelledby="full-deck-label">
+      <h2 class="cs-section__label" id="full-deck-label">Go deeper</h2>
+      <div class="cs-prose">
+        <p>
+          Want the full story? The deck walks through the research, explorations, UT insights,
+          final UI along with my design process in detail.
+        </p>
+      </div>
+      <div class="cs-actions">
+        <a class="intro__cta" href="https://pitch.com/v/payment-page-revamp-f9f967/09c788db-c716-4002-9359-408df4abb722" target="_blank" rel="noopener noreferrer">
+          <span class="intro__cta-label">View the full deck</span> <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="../index.html#work" class="cs-next__link">
+          <span class="cs-next__label">See more work</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Akshat Srivastava</span>
+    <span>Last updated April 2026</span>
+  </footer>
+
+  <script src="../script.js?v=51"></script>
+</body>
+</html>

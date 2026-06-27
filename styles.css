@@ -23,7 +23,7 @@
   --s-9: 48px;
   --s-section-y: clamp(56px, 7vw, 80px);
   --s-intro-top: clamp(80px, 10vw, 120px);
-  --s-intro-bottom: clamp(56px, 7vw, 80px);
+  --s-intro-bottom: clamp(56px, 7vw, 72px);
   --s-label-gap: 28px;
 
   --ease: cubic-bezier(.2,.7,.2,1);
@@ -592,10 +592,10 @@ main {
   background-repeat: no-repeat;
 }
 #work .work-card__thumb::after { background: none; }
-#work .thumb--write { background-image: url("assets/payment-page-thumb.png?v=3"); }
-#work .thumb--upsell { background-image: url("assets/ratings-thumb.png?v=2"); }
-#work .thumb--atlas { background-image: url("assets/saved-cards-thumb.png?v=3"); }
-#work .thumb--autolayout { background-image: url("assets/vat-thumb.png?v=3"); }
+#work .thumb--write { background-image: url("payment-page/assets/payment-page-thumb.jpg?v=3"); }
+#work .thumb--upsell { background-image: url("ratings-reviews/assets/ratings-thumb.jpg?v=2"); }
+#work .thumb--atlas { background-image: url("saved-cards/assets/saved-cards-thumb.jpg?v=4"); }
+#work .thumb--autolayout { background-image: url("editage/assets/vat-thumb.jpg?v=4"); }
 
 .thumb--upsell {
   background:
@@ -1043,8 +1043,7 @@ main {
 
 /* Header */
 .cs-header {
-  padding: var(--s-9) 0 var(--s-8);
-  max-width: var(--measure);
+  padding: var(--s-intro-top) 0 0;
 }
 .cs-eyebrow {
   margin: 0 0 var(--s-5);
@@ -1074,12 +1073,13 @@ main {
   max-width: 52ch;
 }
 
-/* Meta grid */
+/* Meta strip — each item sizes to its own text, spread to fill the full width */
 .cs-meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: var(--s-6) var(--s-7);
-  margin: 0 0 var(--s-8);
+  margin: 0 0 var(--s-section-y);
   padding: var(--s-6) 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1132,7 +1132,7 @@ main {
 
 /* Hero visual */
 .cs-hero {
-  margin: var(--s-9) 0;
+  margin: var(--s-section-y) 0;
 }
 .cs-hero__visual {
   width: 100%;
@@ -1144,6 +1144,7 @@ main {
   transition: border-color .35s var(--ease);
 }
 .cs-hero__visual::after { content: ""; position: absolute; inset: 0; opacity: .9; }
+.cs-hero__visual--plain::after { display: none; }
 
 /* TL;DR */
 .cs-tldr {
@@ -1174,15 +1175,15 @@ main {
 }
 .cs-tldr strong { font-weight: 500; color: var(--ink); }
 
-/* Case-study sections */
+/* Case-study sections — match the homepage .block rhythm */
 .cs-section {
-  padding: var(--s-9) 0;
+  padding: var(--s-section-y) 0;
   border-top: 1px solid var(--line);
   transition: border-color .35s var(--ease);
 }
 .cs-section:first-of-type { border-top: none; padding-top: 0; }
 .cs-section__label {
-  margin: 0 0 var(--s-7);
+  margin: 0 0 var(--s-label-gap);
   font-family: "Google Sans Code", ui-monospace, monospace;
   font-weight: 500;
   font-size: 12px;
@@ -1202,6 +1203,17 @@ main {
 .cs-prose > * + * { margin-top: var(--s-5); }
 .cs-prose p { margin: 0; }
 .cs-prose strong { color: var(--ink); font-weight: 500; }
+/* Inline links inside prose — inherit the body text colour (so they don't
+   shout), distinguished only by a subtle underline. Accent colour + underline
+   on hover/focus signals interactivity. */
+.cs-prose a {
+  color: inherit;
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 1px;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+.cs-prose a:hover,
+.cs-prose a:focus-visible { border-color: var(--accent); color: var(--accent); }
 .cs-prose em {
   font-family: "Newsreader", Georgia, serif;
   font-style: italic;
@@ -1269,8 +1281,10 @@ main {
   max-width: var(--max);
 }
 .cs-figure--wide {
-  /* extend beyond the main max width for visual breaks */
-  max-width: min(920px, calc(100vw - 2 * var(--gutter)));
+  /* break past the prose column out to the full main width for visual rhythm */
+  max-width: none;
+  margin-left: calc(-1 * var(--gutter));
+  margin-right: calc(-1 * var(--gutter));
 }
 .cs-figure__visual {
   width: 100%;
@@ -1282,6 +1296,23 @@ main {
   transition: border-color .35s var(--ease);
 }
 .cs-figure__visual::after { content: ""; position: absolute; inset: 0; opacity: .9; }
+.cs-figure__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Full natural-ratio figure image (diagrams, annotated teardowns) */
+.cs-figure__media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  transition: border-color .35s var(--ease);
+}
 .cs-figure figcaption {
   margin-top: var(--s-4);
   max-width: var(--measure);
@@ -1290,6 +1321,26 @@ main {
   color: var(--ink-3);
   letter-spacing: -.005em;
 }
+/* Restore breathing room when prose or another figure follows a figure */
+.cs-figure + .cs-prose,
+.cs-figure + .cs-figure { margin-top: var(--s-8); }
+
+/* Synopsis: action row (deck CTA, etc.) */
+.cs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-8);
+  margin-top: var(--s-7);
+}
+
+/* Synopsis: compact highlights gallery */
+.cs-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--s-6) var(--s-6);
+}
+.cs-gallery .cs-figure { margin: 0; max-width: none; }
 
 /* Metrics grid */
 .cs-metrics {
@@ -1345,13 +1396,18 @@ main {
   align-items: center;
   gap: var(--s-3);
   font-size: 15px;
-  color: var(--ink);
+  color: var(--ink-3);
   transition: color .2s var(--ease);
 }
-.cs-next__label { border-bottom: 1px solid var(--line-2); padding-bottom: 2px; }
+.cs-next__label { border-bottom: 1px solid var(--line-2); padding-bottom: 2px; transition: border-color .2s var(--ease); }
 .cs-next__arrow { transition: transform .3s var(--ease); color: var(--ink-3); }
+/* On hover/focus: text + arrow turn accent, the arrow nudges right, and the
+   label's underline also recolours to accent (it has its own border-color, so
+   it must be targeted explicitly — the link's color change alone won't reach it). */
 .cs-next__link:hover,
 .cs-next__link:focus-visible { color: var(--accent); }
+.cs-next__link:hover .cs-next__label,
+.cs-next__link:focus-visible .cs-next__label { border-color: var(--accent); }
 .cs-next__link:hover .cs-next__arrow,
 .cs-next__link:focus-visible .cs-next__arrow { transform: translateX(4px); color: var(--accent); }
 

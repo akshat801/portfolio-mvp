@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Saved Cards Portal, a project synopsis by Akshat Srivastava on Razorpay's portal giving users transparency and control over saved cards." />
+  <title>Saved Cards Portal · Akshat Srivastava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=68" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1319'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Google Sans,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("themeToggle");
+          if (!btn) return;
+          var isDark = theme === "dark";
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        });
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <header class="nav">
+    <a href="../index.html" class="nav__name">Akshat Srivastava</a>
+    <nav class="nav__links" aria-label="Primary">
+      <button
+        class="theme"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+      >
+        <svg class="theme__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="cs">
+
+    <!-- ── Project header ───────────────────────────────────────────── -->
+    <header class="cs-header">
+      <p class="cs-eyebrow">Case study · RAZORPAY · 2022</p>
+      <h1 class="cs-title">Saved Cards Portal</h1>
+      <p class="cs-deck">
+        An online portal that gives users one place to see and control every card saved across merchants.
+      </p>
+
+      <dl class="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Product Designer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Me · 1 PM · 1 Engineer</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Razorpay Website</dd>
+        </div>
+      </dl>
+    </header>
+
+    <!-- ── 01 · Context ────────────────────────────────────────────── -->
+    <section class="cs-section" id="context" aria-labelledby="context-label">
+      <h2 class="cs-section__label" id="context-label">Context</h2>
+      <div class="cs-prose">
+        <p>
+          Razorpay powers payments for millions of Indian businesses, so a single
+          shopper ends up with their card <strong>saved across dozens of merchants</strong> they may
+          not even remember. With the <a href="https://www.rbi.org.in/commonperson/english/scripts/FAQs.aspx?Id=2917" target="_blank" rel="noopener noreferrer">RBI's card‑tokenization</a> mandate approaching, how cards are
+          stored, surfaced, and consented was about to change for the entire ecosystem.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 02 · Problem ────────────────────────────────────────────── -->
+    <section class="cs-section" id="problem" aria-labelledby="problem-label">
+      <h2 class="cs-section__label" id="problem-label">Problem</h2>
+      <div class="cs-prose">
+        <p>
+          Users had no single place to see which cards were saved where, and no easy way to take
+          it back. That created a real trust gap and compliance issues:
+        </p>
+        <ul class="cs-list">
+          <li><strong>No visibility.</strong> Cards were saved silently at checkout, users couldn't see the full picture across merchants.</li>
+          <li><strong>No control.</strong> Removing a saved card through each merchant individually was not possible.</li>
+          <li><strong>Regulation incoming.</strong> Tokenization and explicit consent were becoming mandatory, and the current experience met neither.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 03 · Challenges ─────────────────────────────────────────── -->
+    <section class="cs-section" id="challenges" aria-labelledby="challenges-label">
+      <h2 class="cs-section__label" id="challenges-label">Challenges</h2>
+      <div class="cs-prose">
+        <ul class="cs-list">
+          <li><strong>Security vs. clarity.</strong> Showing enough for a user to recognise a card, without exposing sensitive data, meant careful choices about masking and labelling.</li>
+          <li><strong>Cross‑merchant complexity.</strong> Users' saved cards and merchants had many‑to‑many mapping. So the cards and merchants had to read as one coherent, trustworthy list, not a confusing pile of duplicates.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 04 · Solution ───────────────────────────────────────────── -->
+    <section class="cs-section" id="solution" aria-labelledby="solution-label">
+      <h2 class="cs-section__label" id="solution-label">Solution</h2>
+      <div class="cs-prose">
+        <p>
+          I owned the end‑to‑end designs, user flows, information architecture, final UI. Users
+          didn't fear saving cards, they feared not being able to undo it. That reframed the goal
+          from "meet the mandate" to "make saved cards feel like something the user owns." Finally,
+          I shipped;
+        </p>
+        <ul class="cs-list">
+          <li><strong>One place for every card.</strong> A single portal lists every saved card with the merchants it is saved at.</li>
+          <li><strong>Control in one tap.</strong> Clear card / website selection and delete actions, with simple explanations of what it does.</li>
+          <li><strong>Tokenization, made legible.</strong> Consent and tokenization are framed as user benefits and safer cards.</li>
+        </ul>
+      </div>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/savedcards-cards.jpg?v=2" alt="Razorpay Manage Saved Cards, Cards view: a selected Federal Bank card on the left and the list of merchants it is saved with on the right, each removable." />
+        <figcaption>Cards view: pick a saved card to see every merchant it's stored with, and remove it anywhere from one place.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/savedcards-delete-card.jpg?v=2" alt="Razorpay saved cards, Cards view with a card selected and a merchant (Citywoofer) checked for deletion, showing a reassurance note and Delete and Cancel buttons." />
+        <figcaption>From a saved card, choose which merchants to remove it from, then confirm with a clear, reversible step.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/savedcards-websites.jpg?v=2" alt="Razorpay Manage Saved Cards, Website and app view: a list of merchants on the left and the cards saved with the selected merchant on the right." />
+        <figcaption>Website &amp; app view: see which merchants hold your cards, and manage access per merchant.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/savedcards-delete-website.jpg?v=2" alt="Razorpay saved cards, Website and app view with a merchant selected and the saved card checked for deletion, showing a reassurance note and Delete and Cancel buttons." />
+        <figcaption>From a merchant, choose which cards to remove, then confirm with the same clear step.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── 05 · Impact ─────────────────────────────────────────────── -->
+    <section class="cs-section" id="impact" aria-labelledby="impact-label">
+      <h2 class="cs-section__label" id="impact-label">Impact</h2>
+      <div class="cs-prose">
+        <p>
+          The portal shipped fully compliant with the RBI tokenization mandate while giving users a
+          single place to see and control their saved cards. Card‑save opt‑in rose, saved‑card
+          support tickets dropped, and millions of cards were brought under clear user control.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 06 · Reflection ─────────────────────────────────────────── -->
+    <section class="cs-section" id="reflection" aria-labelledby="reflection-label">
+      <h2 class="cs-section__label" id="reflection-label">Reflection</h2>
+      <div class="cs-prose">
+        <p>
+          What I'd do differently: we framed the portal as a compliance deliverable first and a user
+          benefit second. Leading with the trust story, "see and control
+          your cards", from day one would have aligned stakeholders faster and shaped a sharper
+          product.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Go deeper (full deck) ───────────────────────────────────── -->
+    <section class="cs-section" id="full-deck" aria-labelledby="full-deck-label">
+      <h2 class="cs-section__label" id="full-deck-label">Go deeper</h2>
+      <div class="cs-prose">
+        <p>
+          See the live experience and the card control and management flows. If you have ever
+          saved cards during Razorpay checkout, you'll find them here.
+        </p>
+      </div>
+      <div class="cs-actions">
+        <a class="intro__cta" href="https://razorpay.com/flashcheckout/manage/" target="_blank" rel="noopener noreferrer">
+          <span class="intro__cta-label">View the live portal</span> <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="../index.html#work" class="cs-next__link">
+          <span class="cs-next__label">See more work</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Akshat Srivastava</span>
+    <span>Last updated April 2026</span>
+  </footer>
+
+  <script src="../script.js?v=51"></script>
+</body>
+</html>

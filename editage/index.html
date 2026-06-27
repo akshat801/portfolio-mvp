@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Advance VAT Issuance, a project synopsis by Akshat Srivastava on a self-serve pre-payment and VAT invoicing flow for EDITAGE that cut issuance time by 88%." />
+  <title>Advance VAT Issuance · Akshat Srivastava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css?v=68" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1319'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Google Sans,Arial,sans-serif' font-size='34' font-weight='700' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("themeToggle");
+          if (!btn) return;
+          var isDark = theme === "dark";
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        });
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <header class="nav">
+    <a href="../index.html" class="nav__name">Akshat Srivastava</a>
+    <nav class="nav__links" aria-label="Primary">
+      <button
+        class="theme"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+      >
+        <svg class="theme__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="cs">
+
+    <!-- ── Project header ───────────────────────────────────────────── -->
+    <header class="cs-header">
+      <p class="cs-eyebrow">Case study · EDITAGE · 2022</p>
+      <h1 class="cs-title">Advance VAT Issuance</h1>
+      <p class="cs-deck">
+        A self‑serve flow that lets customers pre‑pay and generate a compliant VAT invoice
+        in minutes, cutting issuance time by 88% and clearing a manual finance backlog.
+      </p>
+
+      <dl class="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Product Designer</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Me · 1 PM · 1 Engineer</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Editage Website</dd>
+        </div>
+      </dl>
+    </header>
+
+    <!-- ── 01 · Context ────────────────────────────────────────────── -->
+    <section class="cs-section" id="context" aria-labelledby="context-label">
+      <h2 class="cs-section__label" id="context-label">Context</h2>
+      <div class="cs-prose">
+        <p>
+          Editage provides academic editing and publication support to researchers worldwide.
+          In China and Japan, two of its largest markets, researchers typically pay from
+          institutional budgets or grants, and many <strong>pre‑pay before the fiscal year closes</strong>
+          to lock in funds. To get it reimbursed, every one of them needs a formal, compliant VAT invoice.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 02 · Problem ────────────────────────────────────────────── -->
+    <section class="cs-section" id="problem" aria-labelledby="problem-label">
+      <h2 class="cs-section__label" id="problem-label">Problem</h2>
+      <div class="cs-prose">
+        <p>
+          VAT invoice was issued manually by customer support team. A customer emailed a request, a finance associate
+          validated the company details, generated the document, and mailed it back, which took <strong>2–4 business
+          days</strong>. At fiscal year‑end the queue exploded, and became a business bottleneck.
+        </p>
+        <ul class="cs-list">
+          <li><strong>Customers missed deadlines.</strong> Slow invoices meant reimbursement requests slipped past fiscal‑year cut‑offs.</li>
+          <li><strong>Pre‑payment stalled.</strong> Without an instant invoice, customers hesitated to commit to the budget at all.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── 04 · Solution ───────────────────────────────────────────── -->
+    <section class="cs-section" id="solution" aria-labelledby="solution-label">
+      <h2 class="cs-section__label" id="solution-label">Solution</h2>
+      <div class="cs-prose">
+        <p>
+          I owned the end‑to‑end flow, talked to the PM and engineer to understand the existing
+          flow and constraints. Customers wanted to know the invoice was correct, reliable ETA, and
+          not just fill it out faster. I explored single‑page and stepped layouts;
+          single‑page flow tested better for a high‑stakes financial task as context was maintained.
+        </p>
+        <ul class="cs-list">
+          <li><strong>A single page, different sections.</strong> Amount → reward type → invoice type → VAT details.</li>
+          <li><strong>Single vs. split invoices.</strong> A clear toggle to issue one invoice or split the amount across people.</li>
+          <li><strong>Validation.</strong> Tax registration field validates in real time, and gets saved for future invoice requests.</li>
+          <li><strong>Trust at payment.</strong> Pre‑payment is high‑stakes, highlighting total amount and reassuring reward amount kept customers certain about what they were committing to.</li>
+        </ul>
+      </div>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/editage-solution-1.jpg?v=1" alt="Advance invoice application entry point: a Pre-Payment tab showing a Special Bonus Offer table with deposit-amount slabs mapped to bonus cashback or JD gift-card rewards, plus New Customer Registration and Login to Claim Offer actions and an Apply for Advance VAT Invoice banner." />
+        <figcaption>Entry point: the pre-payment bonus offer that surfaces the advance VAT-invoice flow, with reward slabs shown upfront.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/editage-solution-2.jpg?v=1" alt="Single invoice flow: a pre-payment form with amount entered, a gift type selected, Single Invoice chosen, and Fapiao information fields (title, email, contact, description, use type, tax registration number) leading to a Pay Now action." />
+        <figcaption>Single invoice flow: amount, reward, and invoice type on one focused screen, with Fapiao details validated inline.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/editage-solution-3.jpg?v=1" alt="Split invoice flow: the same pre-payment form with Split Invoice selected, splitting the amount across Person 1 and Person 2, each with their own Fapiao details and an Add another person option." />
+        <figcaption>Split invoice flow: the amount is divided across people, each with their own billing details — a request finance used to handle over email.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/editage-solution-4.jpg?v=1" alt="The legacy Editage payment page: a Make a payment screen with total amount and bonus note, offering WeChat (recommended, with QR code), AliPay, and UnionPay options." />
+        <figcaption>The legacy payment page the flow handed off to: a separate WeChat / AliPay / UnionPay step.</figcaption>
+      </figure>
+      <figure class="cs-figure">
+        <img class="cs-figure__media" src="assets/editage-solution-5.jpg?v=1" alt="The legacy Editage payment confirmation page: a Thank you screen confirming successful payment and that the Fapiao invoice will be emailed, with an Editage WeChat Service follow banner." />
+        <figcaption>The legacy confirmation page, with the Fapiao invoice promised by email after payment.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ── 05 · Impact ─────────────────────────────────────────────── -->
+    <section class="cs-section" id="impact" aria-labelledby="impact-label">
+      <h2 class="cs-section__label" id="impact-label">Impact</h2>
+      <div class="cs-prose">
+        <p>
+          Online VAT application flow reduced advance VAT invoice issuance time by roughly 88%.
+          Pre‑payment conversion rose and invoice‑related support tickets fell as the experience
+          became instant and self‑explanatory.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 06 · Reflection ─────────────────────────────────────────── -->
+    <section class="cs-section" id="reflection" aria-labelledby="reflection-label">
+      <h2 class="cs-section__label" id="reflection-label">Reflection</h2>
+      <div class="cs-prose">
+        <p>
+          What I'd do differently: I under‑invested early in the finance team's side of the system.
+          Automating the customer experience surfaced edge cases that used to be fixed manually,
+          we built for those paths reactively.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Go deeper (full deck) ───────────────────────────────────── -->
+    <section class="cs-section" id="full-deck" aria-labelledby="full-deck-label">
+      <h2 class="cs-section__label" id="full-deck-label">Go deeper</h2>
+      <div class="cs-prose">
+        <p>
+          Want the full story? The deck walks through problem framing, user journey,
+          final shipped screens and prototype.
+        </p>
+      </div>
+      <div class="cs-actions">
+        <a class="intro__cta" href="https://www.figma.com/slides/ZLideekvmKetCyT37EyjTr/Untitled?node-id=1-42" target="_blank" rel="noopener noreferrer">
+          <span class="intro__cta-label">View the full deck</span> <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="../index.html#work" class="cs-next__link">
+          <span class="cs-next__label">See more work</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Akshat Srivastava</span>
+    <span>Last updated April 2026</span>
+  </footer>
+
+  <script src="../script.js?v=51"></script>
+</body>
+</html>
