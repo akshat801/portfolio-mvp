@@ -397,7 +397,7 @@ const TWITTER_STATS_WORKER = "";
           description: u.bio || "",
           // Custom GitHub logo from local assets — picked to match the rest
           // of the portfolio's visual style.
-          logo: { url: "assets/shared/github-logo.png?v=2" },
+          logo: { url: "assets/shared/github-logo.png" },
           totalCommits: total,
           lastCommitAt,
         };
@@ -415,7 +415,7 @@ const TWITTER_STATS_WORKER = "";
           url: "https://github.com/" + username,
           title: nameAttr ? `${nameAttr} (@${username})` : `@${username}`,
           description: bioAttr || "",
-          logo: { url: "assets/shared/github-logo.png?v=2" },
+          logo: { url: "assets/shared/github-logo.png" },
           totalCommits: commitsAttr ? parseInt(commitsAttr, 10) : null,
           lastCommitAt: lastCommitAttr || null,
         };
